@@ -3,6 +3,8 @@ IndentWidth: 4
 UseTab: Never
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
 IndentCaseLabels: true
 SpaceBeforeAssignmentOperators: true
 SpacesInParentheses: false
