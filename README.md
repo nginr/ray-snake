@@ -1,5 +1,6 @@
 # ray-snake
 A snake clone made with raylib.
+
 ![A Snake Clone](assets/screenshot.png)
 
 Build instruction:
