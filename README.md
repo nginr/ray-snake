@@ -7,5 +7,5 @@ Build instruction:
 ```sh
 git clone https://github.com/nginr/ray-snake.git
 cd ray-snake
-./build.sh && ./out/snake
+make run
 ```
