@@ -3,7 +3,7 @@
 CC=clang
 CFLAGS="-Wall -Wextra"
 LDFLAGS=-lm
-SRC="main.c food.c snake.c"
+SRC="src/main.c src/food.c src/snake.c"
 OUT=out/snake
 
 if ! pkg-config --exists raylib; then
