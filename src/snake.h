@@ -3,6 +3,7 @@
 
 #include <assert.h>
 #include <raylib.h>
+#include <raymath.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,8 +21,10 @@ typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
 
 typedef struct Snake {
     node      body;
+    bool      ate;
     Direction dir;
     Texture2D tex[3];
+    int       previous_meal;
 } Snake;
 
 #define da_append(da, item)                                                    \
@@ -55,6 +58,17 @@ typedef struct Snake {
     do {                                                                       \
         if ((*da).count > 0)                                                   \
             (*da).count--;                                                     \
+    } while (0)
+
+#define da_find(da, item, result)                                            \
+    do {                                                                       \
+        Vector2 p = (da)->items[0];                                            \
+        for (int i = 1; i < (da)->count; i++) {                                \
+            Vector2 q = (da)->items[0];                                        \
+            if (Vector2Equals(p, q)) {                                         \
+                result = true;                                                 \
+            }                                                                  \
+        }                                                                      \
     } while (0)
 
 void init_rand_snake(Snake *s, size_t init_size, size_t cellCount);

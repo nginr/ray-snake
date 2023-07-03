@@ -44,10 +44,17 @@ void init_rand_snake(Snake *s, size_t init_size, size_t cellCount) {
 }
 
 void update_snake(Snake *s) {
-    da_popback(&s->body);
-    Vector2 d = direction(s->dir);
-    Vector2 h = Vector2Add(s->body.items[0], d);
-    da_push(&s->body, h);
+    if (s->ate) {
+        Vector2 d = direction(s->dir);
+        Vector2 h = Vector2Add(s->body.items[0], d);
+        da_push(&s->body, h);
+        s->ate = false;
+    } else {
+        da_popback(&s->body);
+        Vector2 d = direction(s->dir);
+        Vector2 h = Vector2Add(s->body.items[0], d);
+        da_push(&s->body, h);
+    }
 }
 
 void draw_snake(Snake *s, size_t cellBlock) {
@@ -64,7 +71,10 @@ void draw_snake(Snake *s, size_t cellBlock) {
     }
 }
 
-void destroy_snake(Snake *s) { free(s->body.items); }
+void destroy_snake(Snake *s) {
+    free(s->body.items);
+    s->body.items = NULL;
+}
 
 Vector2 direction(Direction d) {
     switch (d) {
